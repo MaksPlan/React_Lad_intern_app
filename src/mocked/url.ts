@@ -1,0 +1,1 @@
+export const URL = " http://ws.audioscrobbler.com/2.0/?method=tag.gettopalbums&tag=disco&api_key=949e067b666eaebc7e5b7cd8927e5b7e&format=json";
