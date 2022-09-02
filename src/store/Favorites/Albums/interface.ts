@@ -14,10 +14,10 @@ export interface ActionAlbumsReducer {
 //================ActionCreater================
 
 
-function AddALbum(name = ActionType.ADD_ALBUM , data: IAlbum) {
+export function AddALbum(name = ActionType.ADD_ALBUM , data: IAlbum ) {
     return {type: name, payload: data}
 }
 
-function DeleteAlbum(name = ActionType.DELETE_ALBUM, mbid: string) {
+export function DeleteAlbum(name = ActionType.DELETE_ALBUM, mbid: string) {
     return {type: name, payload: mbid}
 }

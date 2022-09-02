@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const Button = () => {
+interface IProps {
+    buttonAction: any;
+    name: string;   
+}
+
+const Button: FC<IProps> = ({buttonAction, name}) => {
     return (
-        <button type='button'>
-            
+        <button type='button' onClick={buttonAction}>
+           {name}
         </button>
     );
 };

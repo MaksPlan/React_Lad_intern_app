@@ -1,3 +1,3 @@
-import { IAlbumsState } from "../../../interface/interface";
+import { IAlbum, IAlbums, IAlbumsState } from "../../../interface/interface";
 
-export const getFavAlbums = (state: IAlbumsState) => state.albums;
+export const getFavAlbums = (state: {albums: {albums: IAlbum[]}} ) => state.albums.albums; 

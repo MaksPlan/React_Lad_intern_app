@@ -17,4 +17,5 @@ export interface IAlbum {
 
 export interface IAlbumsState {
 albums: IAlbum[];
+
 }

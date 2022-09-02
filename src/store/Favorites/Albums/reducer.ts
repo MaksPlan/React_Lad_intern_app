@@ -11,11 +11,9 @@ export const reducerFavAlbums  = (
 ) => {
     switch (action.type) {
         case ActionType.ADD_ALBUM:
-            
-            return {...state, albums: [...state.albums, action.payload]};
+                    return {...state, albums: Array.from( new Set([...state.albums, action.payload]))};
         case ActionType.DELETE_ALBUM:
-            return {...state.albums, albums: [...state.albums.filter((album) => album.mbid !== action.payload)]}    
-    
+            return {...state, albums: state.albums.filter((album) => album.url !== action.payload.url)}    
         default:
             return {...state};
     }
