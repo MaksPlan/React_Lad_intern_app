@@ -3,7 +3,7 @@ import { addArtist, deleteArtist } from "./interface";
 // import { ActionArtistsReducer, ActionType } from "./interface";
 
 const InitialState = {
-    artists: []
+    artists: [],
 }
 
 export const reducerArtists  = createReducer(InitialState, {
