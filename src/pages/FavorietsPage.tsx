@@ -1,13 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Category from "../Components/Category";
+import { IAlbum } from "../interface/interface";
 import Button from "../shared/Buttons";
-import { getFavAlbums } from "../store/Favorites/Albums/selector";
+import { deleteAlbum, getAlbums } from "../store/Favorites/Albums/albumSlice";
+import { RootState } from "../store/rootReducer";
 
 const FavorietsPage = () => {
-  const FavAlbums = useSelector(getFavAlbums);
+  const FavAlbums = useSelector(getAlbums);
   const dispatch = useDispatch();
-  // const { name } = FavAlbums;
+
   console.log(FavAlbums);
   return (
     <div>
@@ -15,15 +17,14 @@ const FavorietsPage = () => {
       <h2>Любимые Альбомы</h2>
       <ul>
         {
-
-       FavAlbums.map((album) => {
-        return <li>
-          {album.name}
-          {/* <Button buttonAction={() => dispatch(DeleteAlbum(ActionType.DELETE_ALBUM, album.url))} name='delete album' /> */}
-        </li>
-       })
-          // <Button buttonAction={() => dispatch(DeleteAlbum(ActionType.DELETE_ALBUM, ))} name='delete album' />
-      
+          FavAlbums.map((album) => {
+            return (
+              <li>
+                {album.name}
+                <Button buttonAction={() => dispatch(deleteAlbum(album))} name='delete album' />
+              </li>
+            );
+          })
         }
       </ul>
     </div>
