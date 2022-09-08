@@ -1,0 +1,25 @@
+.chart {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.album_container {
+    width: 600px;
+    height: 100px;
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: auto 100px 100px;
+    
+}
+
+.album_name {
+    font-family: Montserrat;
+    font-size: large;
+}
+
+.href {
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: large;
+}

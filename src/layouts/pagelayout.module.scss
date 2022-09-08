@@ -1,4 +1,19 @@
+body {
+    background: no-repeat;
+    background-size: 100%;
+    height: 100%;
+  background-image: url('../../public/image/canvas.jpg');
+}
+
 .main_container {
-    display: flex;
-    background-image:('../../public/image/canvas.jpg');
+  display: flex;
+//   background: no-repeat;
+//     background-size: 100%;
+//   background-image: url('../../public/image/canvas.jpg');
+
+}
+
+.footer {
+  flex: 0 0 auto;
+
 }

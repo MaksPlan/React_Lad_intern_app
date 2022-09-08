@@ -13,7 +13,10 @@ const PageLayout: FC<IProps> = ({ children }) => {
       <div className={style.wrapper}>
         <Header />
         <div className={style.content}>{children}</div>
+        <div className={style.footer}>
         <Footer />
+        </div>
+       
       </div>
     </div>
   );

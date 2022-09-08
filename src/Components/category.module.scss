@@ -1,0 +1,17 @@
+.categories {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    gap: 50px;
+}
+
+.category_element {
+    font-family: Montserrat;
+    font-size: x-large;
+    background-color: transparent;
+    border: none;
+}
+.category_element:hover {
+    background-color: opacify($color: aquamarine, $amount: 0.7);
+    border: none;
+}
