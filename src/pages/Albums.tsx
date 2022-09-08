@@ -20,8 +20,10 @@ const Albums: FC<IProps> = ({ albums }) => {
 
           return (
             <li className={style.album_container}>
-              <p className={style.album_name}>{al.name}</p>
+              <p className={style.album_name}>Альбом {al.name}</p>
+              <p>Исполниетль {al.artist.name} </p>
               <a href={`${al.url}?autostar`} className={style.href}>Play me</a>
+              <img className={style.img} src={al.image[1]["#text"]} alt="" />
               <Button buttonAction={() => dispatch(addALbum(al))} name='add album' />
               
             </li>

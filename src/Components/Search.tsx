@@ -14,12 +14,19 @@ export const fetchSearchAlbums = createAsyncThunk(
       }
 )
 
+
+
 const Search = () => {
     const dispatch = useDispatch()
+    function inputHandler(ev: React.ChangeEvent<HTMLInputElement>) {
+        let album  = ev.target.value;
+        return fetchSearchAlbums(album);
+        }
+
 
     return (
         <>
-          <input type="text"  className={style.input} onChange={(e) => fetchSearchAlbums(e.currentTarget.value)} />  
+          <input type="text"  className={style.input} onChange={(e) =>inputHandler(e)} />  
         </>
     );
 };

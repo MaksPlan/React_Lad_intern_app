@@ -13,7 +13,8 @@ const HomePage = () => {
   // const [searchAlbums, setSearchAlbums] = useState<IAlbum[] | null>();
   const searchResult = useSelector<RootState>((state) => state.search.search);
 
-  useEffect(() => setAlbums(searchResult), [searchResult]);
+  useEffect(() => {
+   console.log(searchResult) }, [searchResult]);
 
   const gettopalbums = async () => {
     try {
@@ -21,9 +22,7 @@ const HomePage = () => {
       const data = await respocne.json();
       console.log(data.albums);
       let addMbid = createMBID(data.albums.album);
-      // setAlbums(data.albums);
       setAlbums(addMbid);
-      console.log('albums', albums);
     } catch (error) {
       console.log(error);
     }

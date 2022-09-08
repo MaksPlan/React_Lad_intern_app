@@ -13,6 +13,17 @@ export interface IAlbum {
     name: string;
     mbid: string;
     url: string;
+    image: Img[];
+    artist: {
+        url: string;
+        name: string;
+        mbid: string;
+    }
+}
+
+export interface Img {
+    '#text': string;
+    size: string;
 }
 
 export interface IAlbumsState {
