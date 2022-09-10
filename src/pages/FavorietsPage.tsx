@@ -1,33 +1,31 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Category from "../Components/Category";
-import { IAlbum } from "../interface/interface";
-import Button from "../shared/Buttons";
-import { deleteAlbum, getAlbums } from "../store/Favorites/Albums/albumSlice";
-import { RootState } from "../store/rootReducer";
+import React from 'react';
+import Category from '../Components/Category';
+import style from './favoritepage.module.scss';
 
 const FavorietsPage = () => {
-  const FavAlbums = useSelector(getAlbums);
-  const dispatch = useDispatch();
 
-  console.log(FavAlbums);
+  /* 1)сделать проброс из категории наверх на страницу избранного,
+   по названию категории делать выбор между селекторами
+
+
+
+   3) отладить стили, чтобы карточки в чарте нормально отображались
+
+   4) сделать рекомендации и поиск-ссылку по исполнителю
+
+   5) написать редюссер по плейлистам как массив обьектов 
+
+   6)
+   
+   */
+
+
+
   return (
-    <div>
+    <>
       <Category />
-      <h2>Любимые Альбомы</h2>
-      <ul>
-        {
-          FavAlbums.map((album) => {
-            return (
-              <li>
-                {album.name}
-                <Button buttonAction={() => dispatch(deleteAlbum(album))} name='delete album' />
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
+ 
+    </>
   );
 };
 

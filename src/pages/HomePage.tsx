@@ -3,18 +3,21 @@ import { useSelector } from 'react-redux';
 import Navigation from '../Components/Navigation';
 import { IAlbum, IAlbums } from '../interface/interface';
 import { URL } from '../mocked/url';
-import { RootState } from '../store/rootReducer';
+import { RootState, useAppSelector } from '../store/rootReducer';
 import { getSearchState } from '../store/Search/searchSlice';
 import { createMBID } from '../utils/createMBID';
-import Albums from './Albums';
+import TopAlbum from './TopAlbum';
 
 const HomePage = () => {
   const [albums, setAlbums] = useState<IAlbum[] | null>(null);
-  // const [searchAlbums, setSearchAlbums] = useState<IAlbum[] | null>();
-  const searchResult = useSelector<RootState>((state) => state.search.search);
+  const [searchAlbums, setSearchAlbums] = useState<IAlbum[] | null>(null);
+  const [topAlbums, setTopAlbums] = useState<IAlbum[] | null>(null);
+
+  const searchResult = useAppSelector((state) => state.search.search);
 
   useEffect(() => {
-   console.log(searchResult) }, [searchResult]);
+    setSearchAlbums(searchResult);
+  }, [searchResult]);
 
   const gettopalbums = async () => {
     try {
@@ -22,7 +25,7 @@ const HomePage = () => {
       const data = await respocne.json();
       console.log(data.albums);
       let addMbid = createMBID(data.albums.album);
-      setAlbums(addMbid);
+      setTopAlbums(addMbid);
     } catch (error) {
       console.log(error);
     }
@@ -32,12 +35,16 @@ const HomePage = () => {
     gettopalbums();
   }, []);
 
+  useEffect(() => {
+    searchAlbums ? setAlbums(searchAlbums) :
+     setAlbums(topAlbums);
+  }, [searchAlbums, topAlbums]);
   // useEffect(() => console.log(albums), [albums]);
 
   return (
     <div>
       {/* {albums ? 'AL' : "Loading"} */}
-      {albums ? <Albums albums={albums} /> : 'Loading'};
+      {albums ? <TopAlbum albums={albums} /> : 'Loading'};
     </div>
   );
 };
