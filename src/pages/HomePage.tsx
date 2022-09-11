@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import Navigation from '../Components/Navigation';
-import { IAlbum, IAlbums } from '../interface/interface';
+import { IAlbum } from '../interface/interface';
 import { URL } from '../mocked/url';
-import { RootState, useAppSelector } from '../store/rootReducer';
-import { getSearchState } from '../store/Search/searchSlice';
+import { useAppSelector } from '../store/rootReducer';
 import { createMBID } from '../utils/createMBID';
 import TopAlbum from './TopAlbum';
 
@@ -14,10 +11,7 @@ const HomePage = () => {
   const [topAlbums, setTopAlbums] = useState<IAlbum[] | null>(null);
 
   const searchResult = useAppSelector((state) => state.search.search);
-
-  useEffect(() => {
-    setSearchAlbums(searchResult);
-  }, [searchResult]);
+  const flagInput = useAppSelector((state) => state.search.clearInput);
 
   const gettopalbums = async () => {
     try {
@@ -36,17 +30,19 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
-    searchAlbums ? setAlbums(searchAlbums) :
-     setAlbums(topAlbums);
-  }, [searchAlbums, topAlbums]);
-  // useEffect(() => console.log(albums), [albums]);
+    setAlbums(topAlbums);
+  }, [topAlbums]);
 
-  return (
-    <div>
-      {/* {albums ? 'AL' : "Loading"} */}
-      {albums ? <TopAlbum albums={albums} /> : 'Loading'};
-    </div>
-  );
+  useEffect(() => {
+    setSearchAlbums(searchResult);
+    setAlbums(searchResult);
+  }, [searchResult]);
+
+  useEffect(() => {
+    flagInput ? setAlbums(topAlbums) : setAlbums(searchAlbums);
+  }, [flagInput]);
+
+  return <div>{albums ? <TopAlbum albums={albums} /> : 'Loading'};</div>;
 };
 
 export default HomePage;

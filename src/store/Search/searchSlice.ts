@@ -19,8 +19,13 @@ interface initialState {
         search: [],
         status: 'wait',
         error: null,
+        clearInput: true,
     },
-    reducers: { },
+    reducers: {
+        clearInput: (state, action) => {
+          state.clearInput = action.payload
+        }
+     },
     extraReducers: (builder) => {
         builder
             .addCase(
@@ -39,5 +44,6 @@ interface initialState {
 
 });
 
+export const {clearInput} = searchSlice.actions;
 export const getSearchState = (state: RootState) => state.search;
 export default searchSlice.reducer;
