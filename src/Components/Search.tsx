@@ -4,15 +4,17 @@ import { searchURL } from '../mocked/url';
 import { useAppDispatch } from '../store/rootReducer';
 import { clearInput } from '../store/Search/searchSlice';
 import style from './search.module.scss';
+import axios from 'axios';
 
 export const fetchSearchAlbums = createAsyncThunk(
   'search',
   async function searchAlbums(name: string) {
-    const response = await fetch(searchURL(name));
-    const data = await response.json();
-    return data;
+    const data = await axios.get(searchURL(name))
+    return data.data
   }
 );
+
+// export const // функция вызова асинхроная 
 
 const Search = () => {
   const dispatch = useAppDispatch();

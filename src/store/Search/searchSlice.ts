@@ -24,6 +24,9 @@ interface initialState {
     reducers: {
         clearInput: (state, action) => {
           state.clearInput = action.payload
+        },
+        searchArtistAsHref: (state, action) => {
+            
         }
      },
     extraReducers: (builder) => {

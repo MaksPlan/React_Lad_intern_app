@@ -12,8 +12,12 @@ import { RootState } from "../../rootReducer";
     initialState,
     reducers: {
       addALbum: (state, action: PayloadAction<IAlbum>) => {
-        const uniqAlbums = [...state.albums, action.payload]
-        state.albums = Array.from(new Set(uniqAlbums));
+ 
+    const isUnique = state.albums.some((album) => album.mbid === action.payload.mbid)
+
+    if (!isUnique) state.albums = [...state.albums, action.payload]
+    
+
       },
       deleteAlbum: (state, action: PayloadAction<IAlbum>) => {
         state.albums = state.albums.filter(

@@ -18,8 +18,10 @@ export const artistSlice = createSlice({
     initialState,
     reducers: {
         addArtist: (state, action: PayloadAction<TArtist>) => {
-            const uniqAlbums = [...state.artists, action.payload]
-            state.artists = Array.from(new Set(uniqAlbums));
+       
+    const isUnique = state.artists.some((artist) => artist.mbid === action.payload.mbid)
+
+    if (!isUnique) state.artists = [...state.artists, action.payload]
           },
           deleteArtist: (state, action: PayloadAction<TArtist>) => {
             state.artists = state.artists.filter(

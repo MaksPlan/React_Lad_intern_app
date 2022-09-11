@@ -4,22 +4,32 @@ import { URL } from '../mocked/url';
 import { useAppSelector } from '../store/rootReducer';
 import { createMBID } from '../utils/createMBID';
 import TopAlbum from './TopAlbum';
+import axios from 'axios';
+import Genre from '../Components/Genre';
+import style from './homepage.module.scss';
 
 const HomePage = () => {
   const [albums, setAlbums] = useState<IAlbum[] | null>(null);
   const [searchAlbums, setSearchAlbums] = useState<IAlbum[] | null>(null);
   const [topAlbums, setTopAlbums] = useState<IAlbum[] | null>(null);
+  const [genre, setGenre] = useState<string>('disco')
 
   const searchResult = useAppSelector((state) => state.search.search);
   const flagInput = useAppSelector((state) => state.search.clearInput);
 
+  function chooseGenre(genre: string) {
+   return setGenre(genre)
+  }
+
   const gettopalbums = async () => {
     try {
-      const respocne = await fetch(URL + '&limit=10');
-      const data = await respocne.json();
-      console.log(data.albums);
-      let addMbid = createMBID(data.albums.album);
-      setTopAlbums(addMbid);
+       axios.get(URL(genre) + '&limit=10')
+      .then((response) => {
+        const newData = response.data
+        console.log(newData.albums);
+        let addMbid = createMBID(newData.albums.album);
+        setTopAlbums(addMbid);
+      })
     } catch (error) {
       console.log(error);
     }
@@ -41,8 +51,17 @@ const HomePage = () => {
   useEffect(() => {
     flagInput ? setAlbums(topAlbums) : setAlbums(searchAlbums);
   }, [flagInput]);
+  
+  useEffect(() => {
+    gettopalbums();
+  }, [genre])
 
-  return <div>{albums ? <TopAlbum albums={albums} /> : 'Loading'};</div>;
+  return <div>
+    <div className={style.genre}>
+    <Genre chooseGenre={chooseGenre}/>
+    </div>
+
+    {albums ? <TopAlbum albums={albums} /> : 'Loading'};</div>;
 };
 
 export default HomePage;
