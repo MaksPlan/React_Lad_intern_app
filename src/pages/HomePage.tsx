@@ -7,6 +7,7 @@ import TopAlbum from './TopAlbum';
 import axios from 'axios';
 import Genre from '../Components/Genre';
 import style from './homepage.module.scss';
+import TrackList from '../Components/TrackList';
 
 const HomePage = () => {
   const [albums, setAlbums] = useState<IAlbum[] | null>(null);
@@ -56,12 +57,19 @@ const HomePage = () => {
     gettopalbums();
   }, [genre])
 
-  return <div>
+  return <div className={style.wrapper}>
+     <div className={style.tracklist}>
+      <TrackList />
+    </div>
     <div className={style.genre}>
     <Genre chooseGenre={chooseGenre}/>
     </div>
-
-    {albums ? <TopAlbum albums={albums} /> : 'Loading'};</div>;
+   
+<div className={style.albums}>
+{albums ? <TopAlbum albums={albums} /> : 'Loading'};
+</div>
+ 
+    </div>;
 };
 
 export default HomePage;

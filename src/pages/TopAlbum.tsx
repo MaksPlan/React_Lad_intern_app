@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import GetInfo from '../Components/GetInfo';
 import { IAlbum, IAlbums } from '../interface/interface';
 import Button from '../shared/Buttons';
 import { addALbum } from '../store/Favorites/Albums/albumSlice';
@@ -18,8 +19,8 @@ const TopAlbum: FC<IProps> = ({ albums }) => {
         {albums.map((al) => {
           return (
             <li className={style.album_container}>
-              <p className={style.album_name}>Альбом {al.name}</p>
-              <p>Исполниетль {al.artist.name} </p>
+              <p className={style.album_name}>Альбом  <GetInfo artist={al.artist.name} album={al.name}>{al.name}</GetInfo> </p>
+              <p className={style.album_name}>Исполниетль {al.artist.name} </p>
               <Button buttonAction={() => dispatch(addArtist(al.artist))} name="add artist" />
               <a href={`${al.url}?autostar`} className={style.href}>
                 Play me

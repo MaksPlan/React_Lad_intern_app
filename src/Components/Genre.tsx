@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const Genre: FC<IProps> = ({ chooseGenre }) => {
-  const genres = ['rock', 'rap', 'disco', 'jazz', 'neoclassic'];
+  const genres = ['rock', 'rap', 'disco', 'jazz', 'neoclassic', 'hip-hop','dubstep', 'lo-fi', 'techno',];
 
   return (
     <>

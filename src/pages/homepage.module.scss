@@ -1,5 +1,23 @@
+.wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 50px;
+    justify-content: space-between;
+}
+
 .genre {
     position:relative;
     float: right;
     margin-left: 5%;
+}
+.tracklist {
+    position: relative;
+    float: right;
+    margin-left: 60px;
+    padding-right: 5%;
+    width: 400px;
+}
+
+.albums {
+    width: 800px;
 }
