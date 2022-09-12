@@ -3,12 +3,14 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { albumSlice } from "./Favorites/Albums/albumSlice";
 import artistSlice from "./Favorites/Artists/artistSlice";
 import { searchSlice } from "./Search/searchSlice";
+import { trackListSlice } from "./TraclistInfo/trackListInfoSlice";
 
 export const store = configureStore(
    { reducer: {
     albums: albumSlice.reducer,
     artists: artistSlice,
     search: searchSlice.reducer,
+    trackList: trackListSlice.reducer,
     }}
 );
 

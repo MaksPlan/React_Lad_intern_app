@@ -1,20 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { FetchGetInfo } from "../../Components/GetInfo";
 import { Img } from "../../interface/interface";
+import { RootState } from "../rootReducer";
 
 interface ITrack {
-    name: string;
+   name: string;
     url: string;
 
 }
 
-interface ItrackLictAndInfoData {
+export interface ItrackLictAndInfoData {
     album: {
         artist: string;
         image: Img[];
         mbid: string;
         name: string;
         playcount: string;
-        tracks: ITrack[];
+        tracks: {
+           track: ITrack[]};
         url: string;
         wiki: {
             published: string;
@@ -26,8 +29,14 @@ interface ItrackLictAndInfoData {
     }
 }
 
-const initialState = {
-trackList: [],
+type TiniTialState = {
+    trackList: ItrackLictAndInfoData | null;
+    status: string;
+    error: string | null;
+}
+
+const initialState: TiniTialState = {
+trackList: null,
 status: 'wait',
 error: null,
 };
@@ -41,16 +50,20 @@ export const trackListSlice = createSlice({
     (builder) => {
         builder
             .addCase(
-                fetchSearchAlbums.pending, (state) => {
+                FetchGetInfo.pending, (state) => {
                     state.status = 'loading';
                     state.error = null;
                 })
             .addCase(
-                fetchSearchAlbums.fulfilled, (state, action) => {
+                FetchGetInfo.fulfilled, (state, action) => {
                     state.status = 'resolved';
-                    state.search = action.payload.results.albummatches.album;
+                    state.trackList = action.payload;
                 })
             .addCase(
-                fetchSearchAlbums.rejected, (state, action) => {})
+                FetchGetInfo.rejected, (state, action) => {})
     }
 })
+
+
+export const getTrackList = (state: RootState) => state.trackList.trackList;
+export default trackListSlice.reducer;

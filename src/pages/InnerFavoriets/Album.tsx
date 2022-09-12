@@ -10,24 +10,12 @@ import style from './album.module.scss'
 const Album = () => {
 
     const FavAlbums = useAppSelector(getAlbums);
-  /* 1)сделать проброс из категории наверх на страницу избранного,
-   по названию категории делать выбор между селекторами
-
-   3) отладить стили, чтобы карточки в чарте нормально отображались
-
-   4) сделать рекомендации и поиск-ссылку по исполнителю
-
-   5) написать редюссер по плейлистам как массив обьектов 
-
-   6)
-   
-   */
   const dispatch = useDispatch();
   const nav = useNavigate();
 
 
   return (
-    <div>
+    <div className={style.wrapper}>
    <nav>
     <Button buttonAction={() => nav(-1)} name={'Turn back'} />
    </nav>
