@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import style from './category.module.scss';
 
 const Category = ({}) => {
-  const category = ['Album', 'Artist', 'Playlist'];
+  const category = ['Album', 'Artist'];
   return (
     <nav>
       <ul className={style.categories}>

@@ -14,26 +14,25 @@ const HomePage = () => {
   const [albums, setAlbums] = useState<IAlbum[] | null>(null);
   const [searchAlbums, setSearchAlbums] = useState<IAlbum[] | null>(null);
   const [topAlbums, setTopAlbums] = useState<IAlbum[] | null>(null);
-  const [genre, setGenre] = useState<string>('disco')
-  const [tracks, setTrack] = useState<ItrackLictAndInfoData | null>(null)
+  const [genre, setGenre] = useState<string>('disco');
+  const [tracks, setTrack] = useState<ItrackLictAndInfoData | null>(null);
 
   const searchResult = useAppSelector((state) => state.search.search);
   const flagInput = useAppSelector((state) => state.search.clearInput);
   const trackList = useAppSelector(getTrackList);
 
   function chooseGenre(genre: string) {
-   return setGenre(genre)
+    return setGenre(genre);
   }
 
   const gettopalbums = async () => {
     try {
-       axios.get(URL(genre) + '&limit=10')
-      .then((response) => {
-        const newData = response.data
+      axios.get(URL(genre) + '&limit=10').then((response) => {
+        const newData = response.data;
         console.log(newData.albums);
         let addMbid = createMBID(newData.albums.album);
         setTopAlbums(addMbid);
-      })
+      });
     } catch (error) {
       console.log(error);
     }
@@ -55,29 +54,27 @@ const HomePage = () => {
   useEffect(() => {
     flagInput ? setAlbums(topAlbums) : setAlbums(searchAlbums);
   }, [flagInput]);
-  
+
   useEffect(() => {
     gettopalbums();
-  }, [genre])
+  }, [genre]);
 
   useEffect(() => {
-    setTrack(trackList)
-  }, [trackList])
+    setTrack(trackList);
+  }, [trackList]);
 
-  return <div className={style.wrapper}>
-     <div className={ style.tracklist}>
-  { tracks ? <TrackList /> : 'TrackList Info' }
+  return (
+    <div className={style.wrapper}>
+      <div className={style.tracklist}>
+        {tracks ? <TrackList /> : 'TrackList Info: для справки нажмите на альбом'}
+      </div>
+      <div className={style.genre}>
+        <Genre chooseGenre={chooseGenre} />
+      </div>
 
+      <div className={style.albums}>{albums ? <TopAlbum albums={albums} /> : 'Loading'};</div>
     </div>
-    <div className={style.genre}>
-    <Genre chooseGenre={chooseGenre}/>
-    </div>
-   
-<div className={style.albums}>
-{albums ? <TopAlbum albums={albums} /> : 'Loading'};
-</div>
- 
-    </div>;
+  );
 };
 
 export default HomePage;

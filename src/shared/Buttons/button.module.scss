@@ -2,7 +2,10 @@
     background-color: opacify($color: #0b7e65, $amount: 0.5);
     border: none;
     width: 64px;
-    height: 64px;
+    height: 32px;
 }
 
+.button:active {
+    background-color: blue
+}
 

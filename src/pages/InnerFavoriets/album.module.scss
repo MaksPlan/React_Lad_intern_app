@@ -1,12 +1,27 @@
 .fav_albums_box {
     list-style-type: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color:rgb(38, 118, 91);
+    // background-color:rgb(38, 118, 91);
+    // border: 2px solid  rgb(38, 118, 91) ;
+    gap: 10px;
+}
+
+.name {
+    font-size: 25px;
+}
+
+.element {
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid  rgb(38, 118, 91) ;
+
 }

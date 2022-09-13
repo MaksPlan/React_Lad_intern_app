@@ -17,12 +17,14 @@ const Artist = () => {
 <nav>
     <Button buttonAction={() => nav(-1)} name={'Turn back'} />
    </nav>
-      <h2>Любимые Альбомы</h2>
+      <h2>Любимые Артисты</h2>
       <ul className={style.fav_albums_box}>
         {FavArtist.map((artist) => {
           return (
-            <li>
-              {artist.name}
+            <li className={style.element}>
+            <p className={style.name}>
+            {artist.name}
+              </p>  
               <Button buttonAction={() => dispatch(deleteArtist(artist))} name="delete album" />
             </li>
           );

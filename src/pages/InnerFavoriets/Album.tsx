@@ -23,8 +23,10 @@ const Album = () => {
       <ul className={style.fav_albums_box}>
         {FavAlbums.map((album) => {
           return (
-            <li>
-              {album.name}
+            <li className={style.element}>
+             <p className={style.name}>
+             {album.name}
+              </p> 
               <Button buttonAction={() => dispatch(deleteAlbum(album))} name="delete album" />
             </li>
           );

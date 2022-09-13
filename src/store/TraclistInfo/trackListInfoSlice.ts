@@ -3,7 +3,7 @@ import { FetchGetInfo } from "../../Components/GetInfo";
 import { Img } from "../../interface/interface";
 import { RootState } from "../rootReducer";
 
-interface ITrack {
+export interface ITrack {
    name: string;
     url: string;
 
